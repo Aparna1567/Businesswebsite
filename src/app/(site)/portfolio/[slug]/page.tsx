@@ -5,12 +5,14 @@ import Link from "next/link";
 import HeroSub from "@/components/SharedComponents/HeroSub";
 import { portfolio } from "@/app/api/data";
 
-export default function PortfolioDetails({
+export default async function PortfolioDetails({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  // const { slug } = params;
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
 
   // ✅ Find the matching portfolio project
   const project = portfolio.find((p) => p.slug === slug);

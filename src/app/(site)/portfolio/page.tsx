@@ -23,9 +23,9 @@ const grouped=portfolio.reduce((acc:any[], _, i)=>{
           <HeroSub title="Portfolio" description='' breadcrumbLinks={breadcrumbLinks} />
        <div className='bg-light py-14 lg:py-18 xl:py-22'>
          <div className='container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4 space-y-6' >
-            {grouped.map((pair,rowIndex)=>(
+            {grouped.map((pair:any[],rowIndex)=>(
                 <div className="portfolio-wrapper w-full flex flex-col lg:flex-row gap-5" key={rowIndex} >
-                    {pair.map((item,i)=>{
+                    {pair.map((item:any,i)=>{
                         const isLarge=
                         (rowIndex % 2 === 0 && i === 0) || 
                         (rowIndex % 2 !== 0 && i === 1);

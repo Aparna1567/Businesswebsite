@@ -32,17 +32,31 @@ import blog02 from "@/../public/images/blogdetails/blog-2.webp";
 export const metadata: Metadata={
     title:"Bog Details | Axora",
 }
-type Props={
-    params:{slug:string};
-}
-const BlogDetails=({params}:Props)=>{
-const blog=blogs.find((b)=>b.slug === params.slug);
-if(!blog) return notFound();
- const breadcrumbLinks = [
+// type Props={
+//     params:{slug:string};
+// }
+// const BlogDetails=async({params}:Props)=>{
+// const blog=blogs.find((b)=>b.slug === params.slug);
+// if(!blog) return notFound();
+//  const breadcrumbLinks = [
+//     { href: "/", text: "Home" },
+//     { href: "/blog", text: "Blog Details" },
+//   ];
+
+
+  type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+const BlogDetails = async ({ params }: Props) => {
+  const resolvedParams = await params;
+  const blog = blogs.find((b) => b.slug === resolvedParams.slug);
+  if (!blog) return notFound();
+
+  const breadcrumbLinks = [
     { href: "/", text: "Home" },
     { href: "/blog", text: "Blog Details" },
   ];
-
     return(
         <>
          <HeroSub title={blog.title} description="Explore our latest articles" breadcrumbLinks={breadcrumbLinks} />
